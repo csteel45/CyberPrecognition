@@ -1,0 +1,14 @@
+# === Large real packet captures + on-disk cache store — never commit ===
+# (size: the pcap exceeds GitHub's 100MB file limit; also potentially sensitive traffic)
+data/*
+!data/iris.data
+!data/iris-new.data
+
+# === Commercial license key (e.g. terracotta-license.key) ===
+*.key
+
+# === Build output / VCS leftovers / logs ===
+target/
+.svn/
+*.class
+*.log

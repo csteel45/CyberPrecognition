@@ -1,0 +1,29 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         name="config">
+
+	<diskStore path="./data"/>
+ 
+     <defaultCache
+           maxElementsInMemory="0"
+           eternal="true"
+           overflowToDisk="true"
+           timeToIdleSeconds="1200"
+           timeToLiveSeconds="1200">
+    </defaultCache>
+     
+	<cache name="BigMemory"
+		maxBytesLocalHeap="2G"
+		maxBytesLocalOffHeap="2G"
+		overflowToOffHeap="true"
+		eternal="true" 
+		statistics="true"
+		copyOnRead="true"
+		copyOnWrite="true"
+		logging="true">
+
+   		<persistence strategy="localRestartable" synchronousWrites="false"/>
+
+	</cache>
+
+</ehcache>
