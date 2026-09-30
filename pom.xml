@@ -13,16 +13,26 @@
     		</releases>
 		</repository>
   </repositories>
-      
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>nz.ac.waikato.cms.moa</groupId>
+        <artifactId>moa</artifactId>
+        <version>2012.08</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
     </plugins>
@@ -135,6 +145,12 @@
   		<groupId>org.slf4j</groupId>
   		<artifactId>slf4j-jdk14</artifactId>
   		<version>1.7.5</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.12</version>
+  		<scope>test</scope>
   	</dependency>
   </dependencies>
 </project>
