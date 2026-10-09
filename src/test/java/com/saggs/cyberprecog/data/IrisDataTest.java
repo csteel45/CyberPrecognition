@@ -34,21 +34,23 @@ public class IrisDataTest {
 	@Test
 	public void irisDataHasExpectedLineCount() throws IOException {
 		List<String> lines = readLines(IRIS_DATA_FILE);
-		assertEquals("data/iris.data should contain 150 samples", 151, lines.size());
+		assertEquals("data/iris.data should contain 150 samples", 150, lines.size());
 	}
 
 	@Test
-	public void irisDataFirstLineParses() throws IOException {
+	public void irisDataRowsHaveFourNumericFeaturesAndLabel() throws IOException {
 		List<String> lines = readLines(IRIS_DATA_FILE);
 		assertFalse("data/iris.data should have at least one line", lines.isEmpty());
 
-		String[] fields = lines.get(0).split(",");
-		assertEquals("each row should have 4 measurements plus a class label", 5, fields.length);
+		for (String line : lines) {
+			String[] fields = line.split(",");
+			assertEquals("each row should have 4 measurements plus a class label: " + line, 5, fields.length);
 
-		for (int i = 0; i < 4; i++) {
-			Double.parseDouble(fields[i]);
+			for (int i = 0; i < 4; i++) {
+				Double.parseDouble(fields[i]);
+			}
+			assertFalse("class label should not be empty: " + line, fields[4].trim().isEmpty());
 		}
-		assertFalse("class label should not be empty", fields[4].trim().isEmpty());
 	}
 
 	private static List<String> readLines(File file) throws IOException {
@@ -57,7 +59,9 @@ public class IrisDataTest {
 		try {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				lines.add(line);
+				if (!line.trim().isEmpty()) {
+					lines.add(line);
+				}
 			}
 		} finally {
 			reader.close();
