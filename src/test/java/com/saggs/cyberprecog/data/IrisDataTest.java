@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -20,6 +23,9 @@ import org.junit.Test;
 public class IrisDataTest {
 
 	private static final File IRIS_DATA_FILE = new File("data/iris.data");
+
+	private static final Set<String> CLASS_LABELS = new HashSet<String>(
+			Arrays.asList("Iris-setosa", "Iris-versicolor", "Iris-virginica"));
 
 	@Test
 	public void irisDataFileExists() {
@@ -49,7 +55,7 @@ public class IrisDataTest {
 			for (int i = 0; i < 4; i++) {
 				Double.parseDouble(fields[i]);
 			}
-			assertFalse("class label should not be empty: " + line, fields[4].trim().isEmpty());
+			assertTrue("unknown class label: " + line, CLASS_LABELS.contains(fields[4].trim()));
 		}
 	}
 
